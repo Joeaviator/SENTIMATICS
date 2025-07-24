@@ -15,8 +15,8 @@ while True:
     if not user_input:
         print(f"{Fore.RED}🚨🚨🚨Please enter a sentence to analyze{Style.RESET_ALL}")
         continue
-    elif user_input.lower()== "exit" or "quit":
-        print(f"\n{Fore.LIGHTMAGENTA_EX}Exiting Program....🙋‍♂️Bye Agent{user_name}👋👋👋{Style.RESET_ALL}")
+    elif user_input.lower() in ["exit", "quit"]:
+        print(f"\n{Fore.LIGHTMAGENTA_EX}Exiting Program....  🙋‍♂️Bye Agent{user_name}👋👋👋{Style.RESET_ALL}")
         break
     elif user_input=="history":
         if not conversation_history:
@@ -33,7 +33,7 @@ while True:
                 else :
                     color=Fore.YELLOW
                     emoji="😐"
-                print(f"{idx}.{color}{emoji}{text}" f"(polarity{polarity:.2f},{sentiment_type}){Style.RESET_ALL}")
+                print(f"{idx}.{color} {emoji} {text}" f"(polarity{polarity:.2f},{sentiment_type}){Style.RESET_ALL}")
         continue
     polarity=TextBlob(user_input).sentiment.polarity
     if polarity>0.25:
@@ -43,7 +43,7 @@ while True:
 
     elif polarity<-0.25:
         sentiment_type="Negative"
-        color=Fore.Red
+        color=Fore.RED
         emoji="🥺"
 
     else :
@@ -51,4 +51,4 @@ while True:
         color=Fore.YELLOW
         emoji="😐"
     conversation_history.append((user_input,polarity,sentiment_type))
-    print(f"{color}{emoji}{sentiment_type}sentiment detected!" f"(polarity:{polarity:.2f}){Style.RESET_ALL}")
+    print(f"{color} {emoji} {sentiment_type} sentiment detected!" f"(polarity:{polarity:.2f}){Style.RESET_ALL}")
